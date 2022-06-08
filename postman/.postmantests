@@ -1,0 +1,47 @@
+const resp = pm.response;
+const schema = {
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "country": {
+      	"type": "string"
+      },
+      "age": {
+      	"type": "number"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "email",
+      "country",
+      "age"
+    ]
+  }
+}
+
+pm.test("Response status code is 200", function () {
+    resp.to.have.status(200);
+});
+
+pm.test("Response time is less than 200ms", () => {
+  pm.expect(resp.responseTime).to.be.below(200);
+});
+
+pm.test("Response is not empty", function (){
+    pm.expect(resp.json()[0]).to.not.be.undefined;
+});
+
+pm.test("Validating schema", function () {
+    resp.to.have.jsonSchema(schema);
+})

@@ -14,11 +14,9 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("combined"));
 
-// Definimos las expresiones RegExp para hacer coincidir texto con un patrón
-const validEmailRegex = RegExp(
-    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
-);
-const numberRegexp = RegExp(/"-?([0-9]+\.{0,1}[0-9]*)"/g);
+// Definimos las expresiones RegExp para hacer coincidir texto con un patrón.
+// Esta RegExp nos permite eliminar las comillas entre cualquier tipo de número, ya sea float o integer
+const numberRegexp = RegExp(/"[+-]?(([0-9]*[.])?[0-9]+)"/g);
 
 // Creamos el servidor HTTP
 const httpServer = http.createServer({
@@ -28,15 +26,18 @@ const httpServer = http.createServer({
 app.get("/api/csvtojson/1column", async function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     try {
-        //Extraer 
-        const users = await CSVToJSON().fromFile("users_1column.csv");
+        //Convertir archivo CSV a JSON usando la librería csvtojson
+        const users = await CSVToJSON().fromFile("assets/users_1column.csv");
+
+        //Usamos la RegExp para eliminar las comillas entre cualquier tipo de número
         users = JSON.stringify(users);
         users = users.replace(numberRegexp, '$1');
         users = JSON.parse(users);
         
+        //Enviamos la respuesta
         res.status(200).json(users);
     } catch (err) {
-        res.status(401);
+        res.status(400);
     }
 });
 
@@ -44,16 +45,19 @@ app.get("/api/csvtojson/1column", async function (req, res) {
 app.get("/api/csvtojson", async function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     try {
-        let users = await CSVToJSON().fromFile("users.csv");
+        //Convertir archivo CSV a JSON usando la librería csvtojson
+        let users = await CSVToJSON().fromFile("assets/users.csv");
         
+        //Usamos la RegExp para eliminar las comillas entre cualquier tipo de número
         users = JSON.stringify(users);
         users = users.replace(numberRegexp, '$1');
         users = JSON.parse(users);
 
-
+        //Enviamos la respuesta
         res.status(200).json(users);
     } catch (err) {
-        res.status(401);
+        //En caso de error, enviamos un error 401
+        res.status(400);
     }
 });
 
