@@ -17,27 +17,30 @@ Stack propuesto: NodeJS
 
 </details>
 
-<br>
+## Solución y endpoints
 
-## Enfoque de la solución implementada
+Se ha trabajado bajo el framework ExpressJS para desarrollar la aplicación solicitada. Se trata de un framework minimalista usado en desarrollo web, concretamente en el backend. Con él, programaremos nuestra API.
 
-<br>
+Hemos desplegado dos endpoints para poder realizar las peticiones HTTP deseadas según el número de columnas del archivo CSV a convertir.
+
+<ul>
+    <li>Para archivos CSV de una sola columna: `localhost/api/csvtojson/1column`</li>
+    <li>Para archivos CSV multicolumna: `localhost/api/csvtojson`</li>
+</ul>
+
+No es necesaria autenticación para acceder a cada uno de los endpoints al ser desplegado en local. Sin embargo, si se desea desplegar en remoto, se debe considerar implementar una solución en seguridad tal como tokens JWT para validar las peticiones.
 
 ## Herramientas de validación de código
 
-<br>
+Se valida que nuestro código es correcto con la herramienta Sonarcloud.io
+
+
 
 ## Árbol de archivos
 
-<br>
-
 ## Stack
 
-<br>
-
 ## Ejecución del código
-
-<br>
 
 ## Contacto
 

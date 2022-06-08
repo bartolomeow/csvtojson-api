@@ -10,24 +10,26 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Definimos el uso de seguridades para atender peticiones HTTP
-app.use(cors());
+app.use(cors({
+    origin: ['localhost', '127.0.0.1']
+}));
 app.use(helmet());
 app.use(morgan("combined"));
 
 // Definimos las expresiones RegExp para hacer coincidir texto con un patrón.
 // Esta RegExp nos permite eliminar las comillas entre cualquier tipo de número, ya sea float o integer
-const numberRegexp = RegExp(/"[+-]?(([0-9]*[.])?[0-9]+)"/g);
+const numberRegexp = RegExp(/"[+-]?((\d*[.])?\d+)"/g);
 
 // Creamos el servidor HTTP
 const httpServer = http.createServer({
 }, app);
 
 //Endpoint para convertir un archivo CSV de una sola columna
-app.get("/api/csvtojson/1column", async function (req, res) {
+app.get("/api/csvtojson/1column", async function (_req, res) {
     res.setHeader('Content-Type', 'application/json');
     try {
         //Convertir archivo CSV a JSON usando la librería csvtojson
-        const users = await CSVToJSON().fromFile("assets/users_1column.csv");
+        let users = await CSVToJSON().fromFile("assets/users_1column.csv");
 
         //Usamos la RegExp para eliminar las comillas entre cualquier tipo de número
         users = JSON.stringify(users);
@@ -42,7 +44,7 @@ app.get("/api/csvtojson/1column", async function (req, res) {
 });
 
 // Endpoint para convertir un archivo CSV multicolumna
-app.get("/api/csvtojson", async function (req, res) {
+app.get("/api/csvtojson", async function (_req, res) {
     res.setHeader('Content-Type', 'application/json');
     try {
         //Convertir archivo CSV a JSON usando la librería csvtojson
