@@ -38,7 +38,7 @@ No es necesaria autenticación para acceder a cada uno de los endpoints al ser d
 
 Se valida que nuestro código es correcto con la herramienta Sonarcloud.io
 
-![SonarCloud](https://raw.githubusercontent.com/bartolomeow/csvtojson-api/master/src/assets/SonarCloud.jpg)
+![SonarCloud](https://raw.githubusercontent.com/bartolomeow/csvtojson-api/0284e9cc7c3f9a3baf1ddc760cc53c1e7e9f308d/assets/SonarCloud.jpg)
 
 https://sonarcloud.io/summary/overall?id=bartolomeow_csvtojson-api
 
