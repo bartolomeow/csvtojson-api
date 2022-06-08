@@ -21,11 +21,12 @@ Stack propuesto: NodeJS
 
 Se ha trabajado bajo el framework ExpressJS para desarrollar la aplicación solicitada. Se trata de un framework minimalista usado en desarrollo web, concretamente en el backend. Con él, programaremos nuestra API.
 
+Hemos desplegado dos endpoints para poder realizar las peticiones HTTP deseadas según el número de columnas del archivo CSV a convertir.
+
 Se han dispuesto dos archivos distintos CSV, uno con una sola columna y otro con varias columnas. Realmente ambos endpoints pueden funcionar tanto con archivos CSV de una sola columna como de varias columnas, pero para mostrar el funcionamiento con un archivo con una sola columna se han dispuesto dos archivos y dos endpoints por separado.
 
 Para solucionar el envío de números en formato number (ya sea integer o cualquier otro subtipo) se hace uso de los patrones RegExp para la extracción de los números entrecomillados.
 
-Hemos desplegado dos endpoints para poder realizar las peticiones HTTP deseadas según el número de columnas del archivo CSV a convertir.
 
 Para archivos CSV de una sola columna:
 [localhost:8080/api/csvtojson/1column](http://localhost:8080/api/csvtojson/1column)\
@@ -87,6 +88,8 @@ Para poder importar los tests, se debe copiar y pegar el contenido del archivo\
 `.postmantests`\
 en el apartado Tests de Postman.
 Después, podemos pulsar el botón SEND para recibir el JSON.
+
+![Postman](https://raw.githubusercontent.com/bartolomeow/csvtojson-api/0284e9cc7c3f9a3baf1ddc760cc53c1e7e9f308d/assets/SonarCloud.jpg)
 
 ## Contacto
 
