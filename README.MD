@@ -28,8 +28,8 @@ Para solucionar el envío de números en formato number (ya sea integer o cualqu
 Hemos desplegado dos endpoints para poder realizar las peticiones HTTP deseadas según el número de columnas del archivo CSV a convertir.
 
 Para archivos CSV de una sola columna:
-[localhost/api/csvtojson/1column](localhost/api/csvtojson/1column)\
-Para archivos CSV multicolumna: [localhost/api/csvtojson](localhost/api/csvtojson)
+[localhost/api/csvtojson/1column](http://localhost/api/csvtojson/1column)\
+Para archivos CSV multicolumna: [localhost/api/csvtojson](http://localhost/api/csvtojson)
 
 
 No es necesaria autenticación para acceder a cada uno de los endpoints al ser desplegado en local. Sin embargo, si se desea desplegar en remoto, se debe considerar implementar una solución en seguridad tal como tokens JWT para validar las peticiones.
