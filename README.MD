@@ -21,11 +21,15 @@ Stack propuesto: NodeJS
 
 Se ha trabajado bajo el framework ExpressJS para desarrollar la aplicación solicitada. Se trata de un framework minimalista usado en desarrollo web, concretamente en el backend. Con él, programaremos nuestra API.
 
+Se han dispuesto dos archivos distintos CSV, uno con una sola columna y otro con varias columnas. Realmente ambos endpoints pueden funcionar tanto con archivos CSV de una sola columna como de varias columnas, pero para mostrar el funcionamiento con un archivo con una sola columna se han dispuesto dos archivos y dos endpoints por separado.
+
+Para solucionar el envío de números en formato number (ya sea integer o cualquier otro subtipo) se hace uso de los patrones RegExp para la extracción de los números entrecomillados.
+
 Hemos desplegado dos endpoints para poder realizar las peticiones HTTP deseadas según el número de columnas del archivo CSV a convertir.
 
 <ul>
-    <li>Para archivos CSV de una sola columna: `localhost/api/csvtojson/1column`</li>
-    <li>Para archivos CSV multicolumna: `localhost/api/csvtojson`</li>
+    <li>Para archivos CSV de una sola columna: localhost/api/csvtojson/1column</li>
+    <li>Para archivos CSV multicolumna: localhost/api/csvtojson</li>
 </ul>
 
 No es necesaria autenticación para acceder a cada uno de los endpoints al ser desplegado en local. Sin embargo, si se desea desplegar en remoto, se debe considerar implementar una solución en seguridad tal como tokens JWT para validar las peticiones.
@@ -34,13 +38,55 @@ No es necesaria autenticación para acceder a cada uno de los endpoints al ser d
 
 Se valida que nuestro código es correcto con la herramienta Sonarcloud.io
 
+![SonarCloud](https://raw.githubusercontent.com/bartolomeow/csvtojson-api/master/src/assets/SonarCloud.jpg)
 
+https://sonarcloud.io/summary/overall?id=bartolomeow_csvtojson-api
+
+No tenemos ningún bug ni Code Smells, estos han sido corregidos en el desarrollo del proyecto.
 
 ## Árbol de archivos
 
+```
+csvtojson-api
+├───assets
+├───examples
+└───postman
+```
+
 ## Stack
 
+| Package         | Version |
+| --------------- | ------- |
+| express         | 4.18.1  |
+| csvtojson       | 2.0.10  |
+| dotenv          | 16.0.1  |
+| helmet          | 5.1.0   |
+| morgan          | 1.10.0  |
+| helmet          | 5.1.0   |
+
 ## Ejecución del código
+
+En la raíz del proyecto, en un PC con Node.js y npm instalados, ejecutar los siguientes comandos:
+
+### `npm install`
+
+Instala todos los paquetes necesarios para ejecutar la aplicación en modo local
+
+### `node app.js`
+
+Ejecuta la aplicación en modo desarrollo.\
+Realizar las llamadas a los endpoints definidos en el apartado Solución y endpoints.
+
+### Testing
+
+Para ejecutar los tests en Postman, crear una nueva colección en Postman, importar el archivo \
+`Hackathon carlosorsth.postman_collection.json`\
+Esto nos creará la estructura para nuestras llamadas a API
+
+Para poder importar los tests, se debe copiar y pegar el contenido del archivo\
+`.postmantests`\
+en el apartado Tests de Postman.
+Después, podemos pulsar el botón SEND para recibir el JSON.
 
 ## Contacto
 
